@@ -25,3 +25,10 @@ print(f's9: {s9}')
 
 s10 = 'ż'
 print(ord(s10))
+
+pos_def = s_7.find('shethh')
+# if nto found casues ValueError
+pos_def = s_7.index('sh')
+print(f'pos_def: {pos_def}')
+pos_def = s_7.rfind('sh')
+print(f'pos_def: {pos_def}')
