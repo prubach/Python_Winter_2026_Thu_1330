@@ -32,3 +32,7 @@ pos_def = s_7.index('sh')
 print(f'pos_def: {pos_def}')
 pos_def = s_7.rfind('sh')
 print(f'pos_def: {pos_def}')
+
+s = '3252;252525;25252;52;252'
+a_s = s.split(';')
+print(f'a_s: {a_s}')
