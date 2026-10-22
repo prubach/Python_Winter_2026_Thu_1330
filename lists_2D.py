@@ -41,6 +41,11 @@ def sum_col(arr):
 
     return col_sums
 
+def sum_col_sl(arr):
+    print(f'zip(*arr)={list(zip(*arr))}')
+    return [sum(x) for x in zip(*arr)]
+
+
 # return a sum of all elements in an array
 
 # def sum_all(arr):
@@ -55,6 +60,7 @@ def sum_all(arr):
 print(f'sum_rows={sum_rows(arr_a)}')
 print(f'sum_rows_sl={sum_rows_sl(arr_a)}')
 print(f'sum_col={sum_col(arr_b)}')
+print(f'sum_col_sl={sum_col_sl(arr_b)}')
 print(f'sum_all={sum_all(arr_b)}')
 
 a = [1, 3, 5, 6]
@@ -65,3 +71,19 @@ print(f'b={b}')
 
 c = 100 if a[1] > 4 else 0
 print(f'c={c}')
+
+print('-' * 60)
+
+l_a = [1, 5, 7]
+l_b = [2, 4, 6]
+print(f'l_a={l_a}')
+print(f'l_b={l_b}')
+# Zip - merge elements from 2 lists
+l_c = list(zip(l_a, l_b))
+print(f'l_c={l_c}')
+# * - Unzip
+l_d = list(zip(*l_c))
+print(f'l_d={l_d}')
+
+print(f'l_a\'={l_d[0]}')
+print(f'l_b\'={l_d[1]}')
