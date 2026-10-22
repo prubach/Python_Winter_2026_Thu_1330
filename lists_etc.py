@@ -19,7 +19,9 @@ print(a_a)
 
 a_b = a_a.copy()
 #a_b = a_a
+#a_b.sort(reverse=True)
 a_b.sort()
+a_b.reverse()
 print(f'a_b={a_b}')
 print(f'a_a={a_a}')
 
