@@ -13,6 +13,20 @@ if dict_a.get('GBP'):
 else:
     print('no GBP in dictionary')
 
-print(dict_a.get('GBP', 5.0))
+print(dict_a.get('GBP', 5.0))  # Default value of 5.0 if GBP not in dict
 
+print('-'*60)
+for key, value in dict_a.items():
+    print(key, value)
 
+print('-'*60)
+
+for key in dict_a.keys():
+    print(key, dict_a[key])
+
+print(type(dict_a.keys()))
+print(list(dict_a.keys()))
+
+print(type(dict_a.values()))
+print(dict_a.values())
+print(list(dict_a.values()))
