@@ -17,3 +17,9 @@ print(a_a.index(5))
 a_a.pop(2)
 print(a_a)
 
+a_b = a_a.copy()
+#a_b = a_a
+a_b.sort()
+print(f'a_b={a_b}')
+print(f'a_a={a_a}')
+
