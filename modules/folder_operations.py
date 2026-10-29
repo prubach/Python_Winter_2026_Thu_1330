@@ -2,8 +2,8 @@ import json
 import os
 
 #my_json_file = 'data/rates.json'
-my_json_file = os.path.join('..', 'data','rates.json')
-#my_json_file = 'c:\\Users\\prubac\\PycharmProjects\\Python_Winter_2026_Thu_1330\\data\\rates.json'
+my_json_file = os.path.join('..', 'data','rates.json') # relative path
+#my_json_file = 'c:\\Users\\prubac\\PycharmProjects\\Python_Winter_2026_Thu_1330\\data\\rates.json' # absolute path
 
 cwd = os.getcwd()
 
