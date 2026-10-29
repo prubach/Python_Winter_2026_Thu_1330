@@ -40,27 +40,28 @@ import pandas as pd
 
 def csv_to_pandas(file_name, pln):
     df = pd.read_csv(file_name)
-    print(df)
+    #print(df)
     df = df.set_index('Currency')
-    print(df)
+    #print(df)
     #df['Rate'] = df['Rate'] * pln
-
     #rates = df['Rate'].to_list()
     #rates_proc = [x*pln for x in rates]
     df['Rate'] = df['Rate'].apply(lambda x: x * pln)
-
     dict_rates = df['Rate'].to_dict()
-    print(dict_rates)
+    return dict_rates
 
     #df['brand'] = df['brand'] * pln
     #print(df)
 
-#csv_to_pandas('data/rates.csv', 5)
-#curr_cal(2)
-#cur_calculator('data/rates.csv', 5)
+if __name__ == '__main__':
+    #csv_to_pandas('data/rates.csv', 5)
+    #curr_cal(2)
+    #cur_calculator('data/rates.csv', 5)
 
-# Lambda expressions
-fl = lambda x: x * 5
-a = 100
-b = fl(a)
-print(f"b = {b}")
+    # Lambda expressions
+    fl = lambda x: x * 5
+    a = 100
+    b = fl(a)
+    print(f"b = {b}")
+
+    print(csv_to_pandas('data/rates.csv', 10))
