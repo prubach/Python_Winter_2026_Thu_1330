@@ -15,7 +15,7 @@ def count_bowls_sum_list(n):
     return sum_of_bowls
 
 
-def count_bowls_from_file():
+def count_bowls_from_file(_):
     my_file = 'data/test.txt'
 
     f = open(my_file)
@@ -46,9 +46,10 @@ def count_bowls_sequence(n):
     return n * (n + 1) // 2
 
 
-n = 5
-print(f'count_bowls_sum_list: {count_bowls_sum_list(n)}')
-print(f'count_bowls_sum: {count_bowls_sum(n)}')
-print(f'count_bowls_sequence: {count_bowls_sequence(n)}')
-print(f'count_bowls_recursive: {count_bowls_recursive(n)}')
-print(f'count_bowls_from_file: {count_bowls_from_file()}')
+if __name__ == '__main__':
+    n = 5
+    print(f'count_bowls_sum_list: {count_bowls_sum_list(n)}')
+    print(f'count_bowls_sum: {count_bowls_sum(n)}')
+    print(f'count_bowls_sequence: {count_bowls_sequence(n)}')
+    print(f'count_bowls_recursive: {count_bowls_recursive(n)}')
+    print(f'count_bowls_from_file: {count_bowls_from_file()}')
