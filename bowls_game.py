@@ -30,6 +30,25 @@ def count_bowls_from_file():
     f.close()
     return sum
 
+
+def count_bowls_sum(n):
+    return sum(range(1, n + 1))
+
+
+def count_bowls_recursive(n):
+    if n == 1:
+        return 1
+    else:
+        return count_bowls_recursive(n - 1) + n
+
+
+def count_bowls_sequence(n):
+    return n * (n + 1) // 2
+
+
 n = 5
 print(f'count_bowls_sum_list: {count_bowls_sum_list(n)}')
+print(f'count_bowls_sum: {count_bowls_sum(n)}')
+print(f'count_bowls_sequence: {count_bowls_sequence(n)}')
+print(f'count_bowls_recursive: {count_bowls_recursive(n)}')
 print(f'count_bowls_from_file: {count_bowls_from_file()}')
