@@ -10,9 +10,11 @@ def time_func(func, n):
     elapsed_time = round(t1 - t0, 8)
     print(f'Result: {res} Elapsed time: {elapsed_time}s')
 
-n = 900
 
-time_func(count_bowls_recursive, n)
+# n = 998 - max with recursion
+n = 100000000
+
+#time_func(count_bowls_recursive, n)
 time_func(count_bowls_sum_list, n)
 time_func(count_bowls_sum, n)
 time_func(count_bowls_sequence, n)
