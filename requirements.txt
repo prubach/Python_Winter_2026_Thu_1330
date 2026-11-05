@@ -2,3 +2,4 @@ numpy # > 2.5.3
 pandas
 beautifulsoup4
 jupyter
+openpyxl
