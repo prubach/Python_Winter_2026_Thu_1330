@@ -19,6 +19,17 @@ class Account:
         self.id = Account.last_id
         self.currency = currency
 
+    def deposit(account, amount):
+        account._balance += amount
+        print(f"Deposited {amount} to {account}")
+
+    # code for creating withdraw method
+    def withdraw(account, amount):
+        if account._balance >= amount:
+            account._balance -= amount
+            print(f"Withdrew {amount} from {account}")
+        else:
+            print("Insufficient funds")
 
     def __repr__(self):
         return f"A({self.id}, {self.customer.last_name}, {self._balance} {self.currency})"

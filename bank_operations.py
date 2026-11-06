@@ -9,4 +9,8 @@ a3 = b.create_account(c1, 'USD')
 a4 = b.create_account(c2, 'USD')
 print(b)
 
+a1.deposit(200)
+a1.withdraw(300)
+
+print(b)
 # Add deposit and withdraw methods and show how they can be used
