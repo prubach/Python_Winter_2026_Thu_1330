@@ -19,6 +19,7 @@ class Account:
         self.id = Account.last_id
         self.currency = currency
 
+
     def __repr__(self):
         return f"A({self.id}, {self.customer.last_name}, {self._balance} {self.currency})"
 
