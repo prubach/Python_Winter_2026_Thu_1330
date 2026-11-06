@@ -21,3 +21,23 @@ class Account:
 
     def __repr__(self):
         return f"A({self.id}, {self.customer.last_name}, {self._balance} {self.currency})"
+
+
+class Bank:
+    def __init__(self, name):
+        self.name = name
+        self.customers = []
+        self.accounts = []
+
+    def create_customer(self, first_name, last_name):
+        customer = Customer(first_name, last_name)
+        self.customers.append(customer)
+        return customer
+
+    def create_account(self, customer, currency = 'PLN'):
+        account = Account(customer, currency)
+        self.accounts.append(account)
+        return account
+
+    def __repr__(self):
+        return f"B({self.name}, \n{self.customers}, \n{self.accounts})"
