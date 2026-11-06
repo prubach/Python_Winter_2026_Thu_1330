@@ -12,9 +12,12 @@ class Customer:
 class Account:
     last_id = 1000
 
-    def __init__(self, customer):
+    def __init__(self, customer, currency='PLN'):
         self.customer = customer
         self._balance = 0
         Account.last_id += 1
         self.id = Account.last_id
+        self.currency = currency
 
+    def __repr__(self):
+        return f"A({self.id}, {self.customer.last_name}, {self._balance} {self.currency})"
