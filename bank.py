@@ -29,6 +29,8 @@ class Account:
             account._balance -= amount
             print(f"Withdrew {amount} from {account}")
         else:
+            p = 5546 + 'fsdfg'
+            raise InsufficientBalanceException(f'Insufficient balance to withdraw: {amount}')
             print("Insufficient funds")
 
     def __repr__(self):
@@ -53,3 +55,9 @@ class Bank:
 
     def __repr__(self):
         return f"B({self.name}, \n{self.customers}, \n{self.accounts})"
+
+class BankException(Exception):
+    pass
+
+class InsufficientBalanceException(BankException):
+    pass
