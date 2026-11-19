@@ -2,7 +2,7 @@ from knotprot_download import *
 
 
 def run_download_loop(download_dir):
-    proteins = get_proteins(download_dir)
+    proteins = get_proteins()
     i = 0
     for protein in proteins:
         i += 1
