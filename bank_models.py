@@ -1,6 +1,5 @@
-from openpyxl.packaging import relationship
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -28,7 +27,7 @@ class Account(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     balance = Column(Float)
     currency = Column(String)
-    customer = relationship('Customer', back_populates='accounts')
+    customer = relationship(Customer, back_populates='accounts')
     fk_customer_id = Column(Integer, ForeignKey('customer.id'))
     bank = relationship('Bank', lazy='select', back_populates='accounts')
     fk_bank_id = Column(Integer, ForeignKey('bank.id'), nullable=False)
