@@ -1,7 +1,7 @@
-from sqlalchemy import Column, Integer, String, Float
+from openpyxl.packaging import relationship
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 
@@ -9,11 +9,12 @@ Base = declarative_base()
 class Customer(Base):
     __tablename__ = 'customer'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    first_name = Column(String)
+    first_name = Column(String(100))
     last_name = Column(String)
-    email = Column(String)
-
-
+    email = Column(String(200))
+    accounts = relationship('Account', back_populates='customer')
+    bank = relationship('Bank', lazy='select', back_populates='customers')
+    fk_bank_id = Column(Integer, ForeignKey('bank.id'), nullable=False)
 
     def __init__(self, first_name, last_name):
         self.first_name = first_name
@@ -27,6 +28,10 @@ class Account(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     balance = Column(Float)
     currency = Column(String)
+    customer = relationship('Customer', back_populates='accounts')
+    fk_customer_id = Column(Integer, ForeignKey('customer.id'))
+    bank = relationship('Bank', lazy='select', back_populates='accounts')
+    fk_bank_id = Column(Integer, ForeignKey('bank.id'), nullable=False)
 
     yearly_interest_rate = Column(Float)
 
@@ -64,7 +69,8 @@ class Bank(Base):
     __tablename__ = 'bank'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String)
-
+    customers = relationship(Customer)
+    accounts = relationship(Account)
 
     def __init__(self, name):
         self.name = name
@@ -106,3 +112,21 @@ class InsufficientBalanceException(BankException):
 
 class InvalidAmountException(BankException):
     pass
+
+
+class DBSession:
+    current_db_session = None
+
+    def engine(self):
+        url = 'sqlite:///data/bank.db'
+        return create_engine(url, echo=True)
+
+    def db_session(self):
+        if not DBSession.current_db_session:
+            Session = sessionmaker(bind=self.engine(), autoflush=False, autocommit=False)
+            current_db_session = Session()
+        return current_db_session
+
+def init_db():
+    db_session = DBSession()
+    Base.metadata.create_all(bind=db_session.engine())
