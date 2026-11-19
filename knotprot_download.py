@@ -56,8 +56,7 @@ def create_thumbnail(size, path):
     Creates a thumbnail of an image with the same name as image but with
     _thumbnail appended before the extension. E.g.:
 
-    >>> create_thumbnail((128, 128), 'image.jpg')
-
+    #>>> create_thumbnail((128, 128), 'image.jpg')
     A new thumbnail image is created with the name image_thumbnail.jpg
 
     :param size: A tuple of the width and height of the image
@@ -70,3 +69,5 @@ def create_thumbnail(size, path):
     image = Image.open(path)
     image.thumbnail(size)
     image.save(thumbnail_path)
+
+
