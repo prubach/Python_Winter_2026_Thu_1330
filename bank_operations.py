@@ -12,16 +12,24 @@ print(b)
 
 try:
     a1.deposit(200)
-    a1.withdraw(300)
-
+    # a = 1225
+    # b = '2525'
+    # c = a + b
+    print('You have: {}'.format(a1.balance()))
+    withdraw_amount_str = input('Enter withdraw amount: ')
+    withdraw_amount = float(withdraw_amount_str)
+    a1.withdraw(withdraw_amount)
     #exit(-100)
     print(b)
     # Add deposit and withdraw methods and show how they can be used
-except BankException as e:
-    print(e)
 except InsufficientBalanceException as e:
     print(e)
-except Exception as e:
+    req_am = e.amount_requested
+    ava_am = e.amount_available
+    print('Requested/Available: {}/{}'.format(req_am, ava_am))
+except BankException as e:
+    print(e)
+except Exception as e:  # Use with caution as it may hide all bugs
     print('Serious error')
     print(e)
     raise e

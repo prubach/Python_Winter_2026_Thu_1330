@@ -25,6 +25,9 @@ class Account:
         account._balance += amount
         print(f"Deposited {amount} to {account}")
 
+    def balance(account):
+        return account._balance
+
     # code for creating withdraw method
     def withdraw(account, amount):
         # TODO - as part of the home assignment please extend this method
