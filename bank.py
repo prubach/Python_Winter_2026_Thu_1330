@@ -28,13 +28,15 @@ class Account:
     # code for creating withdraw method
     def withdraw(account, amount):
         # TODO - as part of the home assignment please extend this method
+        if amount <= 0:
+            raise InvalidAmountException(f"Withdrawal amount {amount} is negative")
+
         if account._balance >= amount:
             account._balance -= amount
             print(f"Withdrew {amount} from {account}")
         else:
-            p = 5546 + 'fsdfg'
-            raise InsufficientBalanceException(f'Insufficient balance to withdraw: {amount}')
-            print("Insufficient funds")
+            #p = 5546 + 'fsdfg'
+            raise InsufficientBalanceException(f'Insufficient balance to withdraw: {amount}', amount, account._balance)
 
     def __repr__(self):
         return f"A({self.id}, {self.customer.last_name}, {self._balance} {self.currency})"
@@ -73,4 +75,11 @@ class BankException(Exception):
     pass
 
 class InsufficientBalanceException(BankException):
+    def __init__(self, message, amount_requested, amount_available):
+        super().__init__(message)
+        self.amount_requested = amount_requested
+        self.amount_available = amount_available
+
+
+class InvalidAmountException(BankException):
     pass
