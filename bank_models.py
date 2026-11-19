@@ -31,21 +31,20 @@ class Account(Base):
     fk_customer_id = Column(Integer, ForeignKey('customer.id'))
     bank = relationship('Bank', lazy='select', back_populates='accounts')
     fk_bank_id = Column(Integer, ForeignKey('bank.id'), nullable=False)
-
     yearly_interest_rate = Column(Float)
 
     def __init__(self, customer, currency='PLN'):
         self.customer = customer
-        self._balance = 0
+        self.balance = 0
         self.currency = currency
 
-    def deposit(account, amount):
+    def deposit(self, amount):
         # TODO - as part of the home assignment please extend this method
-        account._balance += amount
-        print(f"Deposited {amount} to {account}")
+        self.balance += amount
+        print(f"Deposited {amount} to {self}")
 
-    def balance(account):
-        return account._balance
+    def get_balance(self):
+        return self.balance
 
     # code for creating withdraw method
     def withdraw(account, amount):
@@ -53,15 +52,15 @@ class Account(Base):
         if amount <= 0:
             raise InvalidAmountException(f"Withdrawal amount {amount} is negative")
 
-        if account._balance >= amount:
-            account._balance -= amount
+        if account.balance >= amount:
+            account.balance -= amount
             print(f"Withdrew {amount} from {account}")
         else:
             #p = 5546 + 'fsdfg'
-            raise InsufficientBalanceException(f'Insufficient balance to withdraw: {amount}', amount, account._balance)
+            raise InsufficientBalanceException(f'Insufficient balance to withdraw: {amount}', amount, account.balance)
 
     def __repr__(self):
-        return f"A({self.id}, {self.customer.last_name}, {self._balance} {self.currency})"
+        return f"A({self.id}, {self.balance} {self.currency})"
 
 
 class Bank(Base):
@@ -118,7 +117,7 @@ class DBSession:
 
     def engine(self):
         url = 'sqlite:///data/bank.db'
-        return create_engine(url, echo=True)
+        return create_engine(url, echo=False)
 
     def db_session(self):
         if not DBSession.current_db_session:
