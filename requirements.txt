@@ -4,3 +4,4 @@ beautifulsoup4
 jupyter
 openpyxl
 plotly
+SqlAlchemy
